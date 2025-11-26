@@ -1,0 +1,244 @@
+/* =========================================
+   1. FUENTES Y CONFIGURACIÓN GLOBAL
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+
+:root {
+    --primary-color: #fcbd00;       /* Amarillo Gimnasio */
+    --text-color: #ffffff;          /* Blanco puro */
+    --bg-glass: rgba(0, 0, 0, 0.75); /* Cristal oscuro para el login */
+    --input-bg: #222;               /* Fondo inputs */
+    --input-border: #444;           /* Borde inputs */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. FONDO ANIMADO (Login Background)
+   ========================================= */
+.login-background {
+    min-height: 100vh;
+    width: 100%;
+    /* Animación de fondo idéntica al sistema */
+    background: linear-gradient(135deg, #000000, #1a1a1a, #434343, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Columna izquierda: imagen */
+.login-image {
+    /* Asegúrate de que la imagen exista en esta ruta */
+    background: url('../imagenes/fondo.png') no-repeat center center/cover;
+    position: relative;
+}
+
+/* Overlay oscuro sobre la imagen para que no brille tanto */
+.login-image::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); 
+}
+
+/* =========================================
+   3. ZONA DEL FORMULARIO (EFECTO CRISTAL)
+   ========================================= */
+.login-form {
+    /* Usamos el efecto Glass del sistema */
+    background-color: var(--bg-glass); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;
+    padding: 40px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil separador */
+}
+
+.login-container {
+    width: 100%;               
+    max-width: 500px;         
+    text-align: center;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* Animación de entrada */
+    animation: slideFadeIn 0.8s ease forwards;
+}
+
+@keyframes slideFadeIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   4. TIPOGRAFÍA Y LOGO
+   ========================================= */
+.login-container .logo {
+    width: 80%;             
+    max-width: 350px;       
+    height: auto;         
+    display: block !important;
+    margin: 0 auto 30px auto !important;
+    
+    /* Sombra suave para el logo */
+    filter: drop-shadow(0 0 10px rgba(252, 189, 0, 0.3));
+}
+
+.login-container h2 {
+    color: var(--primary-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    font-size: 32px;
+    
+    /* Efecto de texto brillante del sistema */
+    text-shadow: 0 0 15px rgba(252, 189, 0, 0.3);
+}
+
+/* =========================================
+   5. INPUTS MODERNOS (ESTILO SISTEMA)
+   ========================================= */
+
+/* Contenedores para centrado y ojito */
+.password-container, 
+.mb-3 {
+    width: 100%;
+    position: relative;
+}
+
+.login-container input.form-control {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: #fff;
+    padding: 18px 20px;
+    border-radius: 8px; /* Bordes menos redondeados, más técnicos */
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.login-container input.form-control::placeholder {
+    color: #888;
+    font-weight: 400;
+}
+
+/* Estado Focus (Brillo Amarillo) */
+.login-container input.form-control:focus {
+    background-color: #2a2a2a;
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(252, 189, 0, 0.25);
+    outline: none;
+}
+
+/* Ajuste específico para el input de password (espacio para el ojo) */
+.password-container input.form-control {
+    padding-right: 50px;
+}
+
+/* Estilo del icono del ojo */
+.password-toggle {
+    color: #888;
+    transition: color 0.3s;
+}
+.password-toggle:hover {
+    color: var(--primary-color); /* El ojo se pone amarillo al pasar el mouse */
+}
+
+/* =========================================
+   6. BOTONES (ESTILO NEÓN / FLAT)
+   ========================================= */
+.login-container .btn-primary {
+    background-color: var(--primary-color);
+    color: #000;
+    border: none;
+    padding: 18px;
+    font-size: 18px;
+    font-weight: 800; /* Extra negrita */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    
+    /* Sombra sutil inicial */
+    box-shadow: 0 4px 15px rgba(252, 189, 0, 0.2);
+}
+
+.login-container .btn-primary:hover {
+    background-color: #ffd54f; /* Un amarillo un poco más claro */
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 0 25px rgba(252, 189, 0, 0.6); /* Resplandor intenso */
+}
+
+/* =========================================
+   7. FOOTER (MÍNIMALISTA)
+   ========================================= */
+.info-footer {
+    background-color: #000; /* Fondo negro sólido o transparente según gusto */
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 13px;
+    padding: 15px 0;
+    position: relative;
+    z-index: 20;
+}
+
+.info-footer-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.info-footer span {
+    color: #aaa;
+}
+
+/* =========================================
+   8. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .login-image { display: none; }
+
+    .login-form {
+        padding: 20px;
+        border-left: none;
+        /* En móvil, aseguramos que el fondo animado se vea bien */
+        background: transparent; 
+    }
+    
+    /* En móvil creamos una tarjeta glass para el formulario */
+    .login-container {
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(15px);
+        padding: 30px;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .login-container h2 { font-size: 26px; }
+}
+

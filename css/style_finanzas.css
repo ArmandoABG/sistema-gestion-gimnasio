@@ -1,0 +1,263 @@
+/* =========================================
+   1. CONFIGURACIÓN GLOBAL
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #fcbd00;       /* Amarillo Gimnasio */
+    --text-color: #ffffff;          /* Blanco puro */
+    --bg-glass: rgba(0, 0, 0, 0.65); /* Color del cristal oscuro */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    padding: 20px 20px 40px 255px; 
+    min-height: 100vh;
+    background: linear-gradient(135deg, #000000, #1a1a1a, #434343, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================================
+   2. CONTENEDOR PRINCIPAL
+   ========================================= */
+.main-content {
+    background-color: var(--bg-glass);
+    padding: 3rem;
+    border-radius: 20px;
+    margin-top: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    min-height: 80vh;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(252, 189, 0, 0.2);
+}
+
+.section-title {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+}
+
+hr {
+    border-color: rgba(255, 255, 255, 0.3);
+    opacity: 0.5;
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   3. MENÚ SUPERIOR (NEÓN FLOTANTE)
+   ========================================= */
+.menu-superior {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.menu-btn {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    background-color: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    background-color: rgba(255,255,255,0.15);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.menu-btn.active {
+    background-color: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 25px rgba(252, 189, 0, 0.5);
+    border-color: var(--primary-color);
+}
+
+/* =========================================
+   4. TARJETAS DE FINANZAS (KPIs)
+   ========================================= */
+.card-finanzas {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-finanzas:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.card-finanzas h5 {
+    color: #adb5bd;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card-finanzas .valor {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 10px 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.card-finanzas .subtexto {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Colores específicos para cada tarjeta */
+.card-ingresos-hoy .card-icon { color: #2ecc71; }
+.card-ingresos-mes .card-icon { color: #3498db; }
+.card-ingresos-anio .card-icon { color: #f1c40f; }
+.card-pagos-mes .card-icon { color: #e74c3c; }
+
+/* =========================================
+   5. TARJETAS DE FILTROS Y CONTENEDORES
+   ========================================= */
+.card-grafico, .card-filtros, .card-resumen-corte {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.chart-container {
+    position: relative;
+    height: 400px;
+    width: 100%;
+}
+
+/* =========================================
+   6. TABLAS Y DATATABLES
+   ========================================= */
+table.dataTable {
+    background-color: transparent !important;
+    border-collapse: separate !important;
+    border-spacing: 0 5px !important;
+}
+
+.table-dark { --bs-table-bg: transparent; }
+
+.table-dark thead th {
+    background-color: #111 !important;
+    color: var(--primary-color) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+.table-dark tbody tr {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    transition: 0.2s;
+}
+
+.table-dark tbody tr:hover {
+    background-color: rgba(252, 189, 0, 0.15) !important;
+    transform: scale(1.01);
+}
+
+.table-dark td {
+    color: #eee;
+    border: none;
+    padding: 15px;
+}
+
+/* DataTables Paginación y Textos */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing {
+    color: #ccc !important;
+    margin-bottom: 15px;
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 1px solid #555 !important;
+    color: #fff !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    border: none !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #333 !important;
+    color: var(--primary-color) !important;
+    border: none !important;
+}
+
+/* =========================================
+   7. INPUTS Y BOTONES GENERALES
+   ========================================= */
+.form-control {
+    background-color: #222;
+    border: 1px solid #444;
+    color: #fff;
+}
+.form-control:focus {
+    background-color: #2a2a2a;
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(252, 189, 0, 0.2);
+}
+.form-label { color: #ccc; font-weight: 600; }
+
+.btn-info { background-color: #0dcaf0; border: none; color: #000; font-weight: 600; }
+.btn-warning { background-color: var(--primary-color); border: none; color: #000; font-weight: 600; }
+.btn-secondary { background-color: #6c757d; border: none; }
+
+/* Corrección de textos en tarjetas */
+.text-muted { color: rgba(255, 255, 255, 0.6) !important; }
+.card-body h4, .card-body h5 { color: #fff; }

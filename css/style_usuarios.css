@@ -1,0 +1,239 @@
+/* =========================================
+   1. FUENTES Y CONFIGURACIÓN GLOBAL
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #fcbd00;       /* Amarillo Gimnasio */
+    --text-color: #ffffff;          /* Blanco puro para mejor lectura */
+    --bg-glass: rgba(0, 0, 0, 0.65); /* Color del cristal (más oscuro) */
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    padding: 20px 20px 40px 255px; 
+    min-height: 100vh;
+
+    /* --- FONDO ANIMADO MEJORADO (ALTO CONTRASTE) --- */
+    /* Usamos un rango más amplio: desde Negro puro hasta Gris Acero */
+    background: linear-gradient(135deg, #000000, #1a1a1a, #434343, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite; /* Un poco más rápido para que se note */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================================
+   2. TRANSICIONES (View Transitions)
+   ========================================= */
+@view-transition { navigation: auto; }
+
+::view-transition-old(main-content-container) {
+    animation: 0.4s ease-out both slide-to-left;
+}
+::view-transition-new(main-content-container) {
+    animation: 0.4s ease-in both slide-from-right;
+}
+
+@keyframes slide-to-left { to { transform: translateX(-30px); opacity: 0; } }
+@keyframes slide-from-right { from { transform: translateX(30px); opacity: 0; } }
+
+/* =========================================
+   3. CONTENEDOR PRINCIPAL (CRISTAL)
+   ========================================= */
+.main-content {
+    background-color: var(--bg-glass);
+    padding: 3rem;
+    border-radius: 20px;
+    margin-top: 20px;
+
+    /* Efecto Vidrio */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+.container h1 {
+    color: var(--primary-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(252, 189, 0, 0.2);
+}
+
+.container h2 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+}
+
+hr { border-color: rgba(255, 255, 255, 0.3); opacity: 0.5; }
+
+/* =========================================
+   4. MENÚ SUPERIOR (NEÓN FLOTANTE)
+   ========================================= */
+.menu-superior {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.menu-btn {
+    flex: 1;
+    min-width: 150px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    
+    background-color: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: rgba(255,255,255,0.15);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.menu-btn.active {
+    background-color: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 25px rgba(252, 189, 0, 0.5); /* Resplandor intenso */
+    border-color: var(--primary-color);
+}
+
+/* =========================================
+   5. TABLAS (CORRECCIÓN DE COLOR BLANCO)
+   ========================================= */
+/* Forzamos transparencia en la tabla para eliminar el fondo blanco de DataTables */
+table.dataTable {
+    background-color: transparent !important;
+    border-collapse: separate !important;
+    border-spacing: 0 5px !important; /* Espacio entre filas */
+}
+
+/* Cabecera */
+.table-dark thead th {
+    background-color: #111 !important; /* Negro casi puro */
+    color: var(--primary-color) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+    padding: 15px !important;
+    text-transform: uppercase;
+}
+
+/* Cuerpo de la tabla - Filas */
+.table-dark tbody tr {
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Gris muy transparente */
+    transition: transform 0.2s ease;
+}
+
+/* Celdas individuales */
+.table-dark tbody td {
+    color: #e0e0e0 !important; /* Texto gris claro/blanco */
+    background-color: transparent !important; /* Para heredar el color de la fila */
+    border: none !important;
+    padding: 15px !important;
+    vertical-align: middle;
+}
+
+/* Eliminar estilos de DataTables que pintan el fondo blanco al ordenar */
+table.dataTable.display tbody tr.odd > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_1,
+table.dataTable.display tbody tr.even > .sorting_1, 
+table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Hover en filas */
+.table-dark tbody tr:hover {
+    background-color: rgba(252, 189, 0, 0.15) !important; /* Amarillo translúcido al pasar mouse */
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* =========================================
+   6. MODALES, INPUTS Y BOTONES
+   ========================================= */
+.modal-content {
+    background-color: #1a1d20;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+.modal-header, .modal-footer { border-color: #333; }
+.btn-close { filter: invert(1); }
+
+/* Inputs oscuros */
+.form-control, .form-select {
+    background-color: #222;
+    border: 1px solid #444;
+    color: #fff;
+}
+.form-control:focus, .form-select:focus {
+    background-color: #2a2a2a;
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(252, 189, 0, 0.2);
+}
+.form-control::placeholder { color: #888; }
+
+/* Botones de Acción en Tabla */
+.btn-warning {
+    background-color: var(--primary-color);
+    border: none;
+    font-weight: 700;
+}
+.btn-danger {
+    background-color: #ff4b4b;
+    border: none;
+}
+
+/* =========================================
+   7. DATATABLES PAGINACIÓN (TEXTO BLANCO)
+   ========================================= */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing {
+    color: #ccc !important;
+    margin-bottom: 15px;
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 1px solid #555 !important;
+    color: #fff !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    border: none !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #333 !important;
+    color: var(--primary-color) !important;
+    border: none !important;
+}

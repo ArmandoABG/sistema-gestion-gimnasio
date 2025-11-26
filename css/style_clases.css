@@ -1,0 +1,298 @@
+/* =========================================
+   1. FUENTES Y CONFIGURACIÓN GLOBAL
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+:root {
+    --primary-color: #fcbd00;       /* Amarillo Gimnasio */
+    --text-color: #ffffff;          /* Blanco puro */
+    --bg-glass: rgba(0, 0, 0, 0.65); /* Color del cristal */
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-color);
+    padding: 20px 20px 40px 255px; 
+    min-height: 100vh;
+
+    /* --- FONDO ANIMADO (ALTO CONTRASTE) --- */
+    background: linear-gradient(135deg, #000000, #1a1a1a, #434343, #000000);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* =========================================
+   2. TRANSICIONES (View Transitions)
+   ========================================= */
+@view-transition { navigation: auto; }
+
+::view-transition-old(main-content-container) {
+    animation: 0.4s ease-out both slide-to-left;
+}
+::view-transition-new(main-content-container) {
+    animation: 0.4s ease-in both slide-from-right;
+}
+
+@keyframes slide-to-left { to { transform: translateX(-30px); opacity: 0; } }
+@keyframes slide-from-right { from { transform: translateX(30px); opacity: 0; } }
+
+/* =========================================
+   3. CONTENEDOR PRINCIPAL (CRISTAL)
+   ========================================= */
+.main-content {
+    background-color: var(--bg-glass);
+    padding: 3rem;
+    border-radius: 20px;
+    margin-top: 20px;
+
+    /* Efecto Vidrio */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Títulos */
+.container h1 {
+    color: var(--primary-color);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(252, 189, 0, 0.2);
+    margin-bottom: 20px;
+}
+
+.container h2 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 30px;
+    border-left: 5px solid var(--primary-color);
+    padding-left: 15px;
+    margin-top: 20px;
+}
+
+/* --- ALERTAS ESTILIZADAS (GLASS) --- */
+.alert {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: none;
+    border-left: 5px solid;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.alert-success { border-color: var(--success-color); }
+.alert-danger { border-color: var(--danger-color); }
+.alert-info { border-color: #17a2b8; }
+
+.btn-close {
+    filter: invert(1); /* X blanca en las alertas */
+}
+
+/* =========================================
+   4. MENÚ SUPERIOR (NEÓN FLOTANTE)
+   ========================================= */
+.menu-superior {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.menu-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    
+    background-color: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: rgba(255,255,255,0.15);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+.menu-btn.active {
+    background-color: var(--primary-color);
+    color: #000;
+    box-shadow: 0 0 25px rgba(252, 189, 0, 0.5);
+    border-color: var(--primary-color);
+}
+
+/* =========================================
+   5. TABLAS (FIX FONDO BLANCO)
+   ========================================= */
+table.dataTable {
+    background-color: transparent !important;
+    border-collapse: separate !important;
+    border-spacing: 0 5px !important;
+}
+
+/* Cabecera */
+.table-dark thead th {
+    background-color: #111 !important;
+    color: var(--primary-color) !important;
+    border-bottom: 2px solid var(--primary-color) !important;
+    padding: 15px !important;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Cuerpo */
+.table-dark tbody tr {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    transition: transform 0.2s ease;
+}
+
+.table-dark tbody td {
+    color: #e0e0e0 !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 15px !important;
+    vertical-align: middle;
+}
+
+/* Quitar fondo blanco de ordenamiento DataTables */
+table.dataTable.display tbody tr.odd > .sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd > .sorting_1,
+table.dataTable.display tbody tr.even > .sorting_1, 
+table.dataTable.order-column.stripe tbody tr.even > .sorting_1 {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Hover */
+.table-dark tbody tr:hover {
+    background-color: rgba(252, 189, 0, 0.15) !important;
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* =========================================
+   6. MODALES Y FORMULARIOS
+   ========================================= */
+.modal-content {
+    background-color: #1a1d20;
+    color: #fff;
+    border: 1px solid #444;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+}
+
+.modal-header, .modal-footer { border-color: #333; }
+
+/* Inputs */
+.form-control, .form-select {
+    background-color: #222;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px 15px;
+}
+
+.form-control:focus, .form-select:focus {
+    background-color: #2a2a2a;
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(252, 189, 0, 0.2);
+}
+
+.form-control::placeholder { color: #888; }
+
+/* Labels en formularios (importante para que se lean) */
+.form-label {
+    color: #ccc;
+    font-weight: 600;
+}
+
+/* Botones */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+
+.btn-warning { background-color: var(--primary-color); border: none; color: #000; }
+.btn-danger { background-color: #ff4b4b; border: none; }
+.btn-success { background-color: #28a745; border: none; }
+.btn-primary { background-color: #0d6efd; border: none; }
+
+/* =========================================
+   7. DATATABLES PAGINACIÓN
+   ========================================= */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing {
+    color: #ccc !important;
+    margin-bottom: 15px;
+}
+
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+    background-color: rgba(0,0,0,0.3) !important;
+    border: 1px solid #555 !important;
+    color: #fff !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #fff !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: var(--primary-color) !important;
+    color: #000 !important;
+    border: none !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #333 !important;
+    color: var(--primary-color) !important;
+    border: none !important;
+}
+
+/* Columna Descripción (La 2da columna) */
+#tablaClases th:nth-child(2),
+#tablaClases td:nth-child(2) {
+    max-width: 250px;       /* Ancho máximo permitido */
+    white-space: nowrap;    /* No permitir saltos de línea */
+    overflow: hidden;       /* Ocultar lo que sobresale */
+    text-overflow: ellipsis;/* Poner "..." al final si se corta */
+}
+
+/* Columna Acciones (La última columna) */
+#tablaClases th:last-child,
+#tablaClases td:last-child {
+    white-space: nowrap;    /* Obliga a los botones a estar en una sola línea */
+    width: 1%;              /* Truco para que ocupe solo el espacio necesario */
+    min-width: 180px;       /* Espacio mínimo garantizado para los botones */
+    text-align: center;
+}
+
+/* Ajuste opcional para dispositivos móviles */
+@media (max-width: 768px) {
+    #tablaClases th:nth-child(2),
+    #tablaClases td:nth-child(2) {
+        max-width: 100px; /* En celular, la descripción se corta antes */
+    }
+}
